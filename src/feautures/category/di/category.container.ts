@@ -8,7 +8,7 @@ import {ModifyCategoryCaseUse} from "../domain/caseuse/ModifyCategoryCaseUse";
 import {SaveCategoryCaseUse} from "../domain/caseuse/SaveCategoryCaseUse";
 
 // Db instance
-let database = infrastructureContainer.appwrite.databases
+const database = infrastructureContainer.appwrite.databases
 
 // Data
 const categoryNetRepository = new CategoryNetRepository(database)
@@ -20,3 +20,17 @@ const getAllCategoriesCaseUse = new GetAllCategoriesCaseUse(categoryOfflineFirst
 const getCategoryByIdCaseUse = new GetCategoryByIdCaseUse(categoryOfflineFirstRepository)
 const modifyCategoryCaseUse = new ModifyCategoryCaseUse(categoryOfflineFirstRepository)
 const saveCategoryCaseUse = new SaveCategoryCaseUse(categoryOfflineFirstRepository)
+
+export const categoryContainer = {
+    repositories: {
+        net: categoryNetRepository,
+        offlineFirst: categoryOfflineFirstRepository
+    },
+    useCases: {
+        getAll: getAllCategoriesCaseUse,
+        getById: getCategoryByIdCaseUse,
+        create: saveCategoryCaseUse,
+        update: modifyCategoryCaseUse,
+        delete: deleteCategoryCaseUse
+    }
+}

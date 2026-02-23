@@ -5,11 +5,21 @@ import {GetAllProductCaseUse} from "../../product/domain/caseuse/GetAllProductCa
 import {GetSalesCaseUse} from "../domain/caseuse/GetSalesCaseUse";
 
 // Infrastructure instance
-let netDatabases= infrastructureContainer.appwrite.databases
+const netDatabases= infrastructureContainer.appwrite.databases
 
 // Data
 const saleNetRepository = new SaleNetRepository(netDatabases)
 const saleOfflineFirstRepository = new SaleOfflineFirstRepository(saleNetRepository)
 
 // Domain
-const getAllCaseUse = new GetSalesCaseUse(saleOfflineFirstRepository)
+const getSalesCaseUse = new GetSalesCaseUse(saleOfflineFirstRepository)
+
+export const saleContainer = {
+    repositories: {
+        net: saleNetRepository,
+        offlineFirst: saleOfflineFirstRepository
+    },
+    useCases: {
+        getAll: getSalesCaseUse
+    }
+}
