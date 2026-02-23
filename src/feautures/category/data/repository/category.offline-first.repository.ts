@@ -5,9 +5,7 @@ import {db} from "../../../../infrastructure/di/dexie.db";
 import {categoryFromDTO, categoryToDTO} from "../mapper/Mappers";
 
 export class CategoryOfflineFirstRepository implements CategoryRepository {
-    constructor(
-        private readonly net: CategoryNetRepository = new CategoryNetRepository()
-    ) {}
+    constructor(private readonly net: CategoryNetRepository) {}
 
     async getAll(): Promise<Category[]> {
         try {

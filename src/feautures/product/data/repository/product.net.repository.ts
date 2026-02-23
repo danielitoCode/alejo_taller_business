@@ -1,14 +1,14 @@
 
 import type {ProductDTO} from "../dto/ProductDTO";
-import {ID, Query} from "appwrite";
-import {container} from "../../../../infrastructure/di/container";
+import {type Databases, ID, Query} from "appwrite";
 import type {ProductWriteDTO} from "../mapper/Mappers";
 
 const DATABASE_ID = import.meta.env.VITE_APPWRITE_DATABASE_ID
 const COLLECTION_ID = "products"
 
-export class ProductNetRepository {
-    private databases = container.appwrite.databases
+class ProductNetRepository {
+    constructor(private readonly databases: Databases ) {
+    }
 
     async getAll(): Promise<ProductDTO[]> {
         const response = await this.databases.listDocuments<ProductDTO>(
@@ -51,7 +51,7 @@ export class ProductNetRepository {
             DATABASE_ID,
             COLLECTION_ID,
             product.$id || ID.unique(),
-            product
+            product as ProductDTO
         )
     }
 
@@ -63,3 +63,5 @@ export class ProductNetRepository {
         )
     }
 }
+
+export default ProductNetRepository

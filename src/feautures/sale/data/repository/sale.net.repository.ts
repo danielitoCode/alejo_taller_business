@@ -1,13 +1,13 @@
-import {container} from "../../../../infrastructure/di/container";
+import {infrastructureContainer} from "../../../../infrastructure/di/infrastructure.container";
 import type {SaleDTO} from "../dto/SaleDTO";
-import {ID, Query} from "appwrite";
+import {type Databases, ID, Query} from "appwrite";
 import type {Models} from "appwrite"
 
 const DATABASE_ID = import.meta.env.VITE_APPWRITE_DATABASE_ID
 const COLLECTION_ID = "sales"
 
 export class SaleNetRepository {
-    private databases = container.appwrite.databases
+    constructor(private databases: Databases) {}
 
     async create(
         data: Omit<SaleDTO, keyof Models.Document>

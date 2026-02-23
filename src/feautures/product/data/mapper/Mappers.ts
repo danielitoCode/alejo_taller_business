@@ -6,7 +6,10 @@ export type ProductWriteDTO = Pick<
     "$id" | "name" | "description" | "price" | "photoUrl" | "categoryId" | "rating"
 >;
 
-
+/**
+ * DTO → Domain (create/update entity)
+ * Se recupera el $id del proporcionado por AppWrite.
+ */
 export function productFromDTO(dto: ProductDTO): Product {
     return {
         id: dto.$id,

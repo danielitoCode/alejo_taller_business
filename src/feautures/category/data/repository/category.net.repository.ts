@@ -1,13 +1,13 @@
-import {container} from "../../../../infrastructure/di/container";
+import {infrastructureContainer} from "../../../../infrastructure/di/infrastructure.container";
 import type {CategoryDTO} from "../dto/CategoryDTO";
-import type {Models} from "appwrite";
+import type {Databases, Models} from "appwrite";
 import {ID} from "appwrite";
 
 const DATABASE_ID = import.meta.env.VITE_APPWRITE_DATABASE_ID
 const COLLECTION_ID = "categories"
 
 export class CategoryNetRepository {
-    private databases = container.appwrite.databases
+    constructor(private readonly databases: Databases) {}
 
     async getAll(): Promise<CategoryDTO[]> {
         const response = await this.databases.listDocuments<CategoryDTO>(

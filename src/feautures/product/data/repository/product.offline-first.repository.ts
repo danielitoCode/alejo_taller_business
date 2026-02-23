@@ -1,12 +1,13 @@
-import { ProductNetRepository } from "./product.net.repository"
+import ProductNetRepository from "./product.net.repository"
 import type {ProductRepository} from "../../domain/repository/product.repository";
 import type {Product} from "../../domain/entity/Product";
 import {db} from "../../../../infrastructure/di/dexie.db";
 import {productFromDTO, productToDTO} from "../mapper/Mappers";
+import type Dexie from "dexie";
 
 export class ProductOfflineFirstRepository implements ProductRepository {
     constructor(
-        private readonly net: ProductNetRepository = new ProductNetRepository()
+        private readonly net: ProductNetRepository
     ) {}
 
     async getAll(): Promise<Product[]> {
@@ -50,6 +51,7 @@ export class ProductOfflineFirstRepository implements ProductRepository {
         } catch {
             const localDTO = productToDTO(product)
             await db.products.put({
+                id: "",
                 ...localDTO,
                 $collectionId: "",
                 $databaseId: "",
