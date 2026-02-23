@@ -6,6 +6,7 @@ export type ProductWriteDTO = Pick<
     "$id" | "name" | "description" | "price" | "photoUrl" | "categoryId" | "rating"
 >;
 
+
 export function productFromDTO(dto: ProductDTO): Product {
     return {
         id: dto.$id,
