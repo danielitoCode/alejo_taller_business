@@ -1,7 +1,7 @@
 import type {SaleItemDTO} from "./SaleItemDTO";
+import type {Models} from "appwrite";
 
-export interface SaleDTO {
-    $id: string
+export interface SaleDTO extends Models.Document {
     date: string
     amount: number
     verified: string

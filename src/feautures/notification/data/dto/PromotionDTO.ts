@@ -1,5 +1,6 @@
-export interface PromotionDTO {
-    $id: string
+import type {Models} from "appwrite";
+
+export interface PromotionDTO extends Models.Document{
     title: string
     message: string
     imageUrl?: string | null
