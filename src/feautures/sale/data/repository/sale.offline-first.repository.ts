@@ -4,7 +4,6 @@ import {saleFromDTO, saleToDTO} from "../mapper/Mappers";
 import type {SaleRepository} from "../../domain/repository/SaleRepository";
 import {SaleNetRepository} from "./sale.net.repository";
 import {db} from "../../../../infrastructure/di/dexie.db";
-import type Dexie from "dexie";
 
 function toLocalSaleDTO(sale: Sale): SaleDTO {
     const payload = saleToDTO(sale);
@@ -25,6 +24,17 @@ function toLocalSaleDTO(sale: Sale): SaleDTO {
 export class SaleOfflineFirstRepository implements SaleRepository {
     constructor(
         private readonly net: SaleNetRepository) {}
+
+    async getAllSales(): Promise<Sale[]> {
+        try {
+            const remote = await this.net.getAll()
+            await db.sales.bulkPut(remote)
+            return remote.map(saleFromDTO)
+        } catch {
+            const local = await db.sales.toArray()
+            return local.map(saleFromDTO)
+        }
+    }
 
     async create(sale: Sale): Promise<Sale> {
         try {
