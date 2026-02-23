@@ -2,6 +2,9 @@ import {infrastructureContainer} from "../../../../infrastructure/di/infrastruct
 import type {CategoryDTO} from "../dto/CategoryDTO";
 import type {Databases, Models} from "appwrite";
 import {ID} from "appwrite";
+import type {ProductDTO} from "../../../product/data/dto/ProductDTO";
+import type {ProductWriteDTO} from "../../../product/data/mapper/Mappers";
+import type {CategoryWriteDTO} from "../mapper/Mappers";
 
 const DATABASE_ID = import.meta.env.VITE_APPWRITE_DATABASE_ID
 const COLLECTION_ID = "categories"
@@ -25,6 +28,31 @@ export class CategoryNetRepository {
             DATABASE_ID,
             COLLECTION_ID,
             ID.unique(),
+            data
+        )
+    }
+
+    async getById(id: string): Promise<CategoryDTO> {
+        return await this.databases.getDocument<CategoryDTO>(
+            DATABASE_ID,
+            COLLECTION_ID,
+            id
+        )
+    }
+
+    async delete(id: string): Promise<void> {
+        await this.databases.deleteDocument(
+            DATABASE_ID,
+            COLLECTION_ID,
+            id
+        )
+    }
+
+    async update(id: string, data: Partial<CategoryWriteDTO>): Promise<CategoryDTO> {
+        return await this.databases.updateDocument<CategoryDTO>(
+            DATABASE_ID,
+            COLLECTION_ID,
+            id,
             data
         )
     }

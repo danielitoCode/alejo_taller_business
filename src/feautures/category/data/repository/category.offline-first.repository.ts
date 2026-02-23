@@ -18,6 +18,48 @@ export class CategoryOfflineFirstRepository implements CategoryRepository {
         }
     }
 
+    async getById(id: string): Promise<Category | null> {
+        try {
+            const remote = await this.net.getById(id)
+            await db.categories.put(remote)
+            return categoryFromDTO(remote)
+        } catch {
+            const local = await db.categories.get(id)
+            return local ? categoryFromDTO(local) : null
+        }
+    }
+
+    async update(id: string, category: Partial<Category>): Promise<Category> {
+        const current = await this.getById(id)
+        if (!current) {
+            throw new Error(`Product with id ${id} not found`)
+        }
+
+        const merged: Category = {
+            ...current,
+            ...category,
+            id
+        }
+
+        try {
+            const updated = await this.net.update(id, categoryToDTO(merged))
+            await db.categories.put(updated)
+            return categoryFromDTO(updated)
+        } catch {
+            const localDTO = categoryToDTO(merged)
+            await db.categories.update(id, localDTO)
+            return merged
+        }
+    }
+
+    async delete(id: string): Promise<void> {
+        try {
+            await this.net.delete(id)
+        } finally {
+            await db.categories.delete(id)
+        }
+    }
+
     async create(category: Category): Promise<Category> {
         try {
             const created = await this.net.create({
