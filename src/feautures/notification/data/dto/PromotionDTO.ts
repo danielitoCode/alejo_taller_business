@@ -1,6 +1,7 @@
 import type {Models} from "appwrite";
 
 export interface PromotionDTO extends Models.Document{
+    id: string
     title: string
     message: string
     imageUrl?: string | null

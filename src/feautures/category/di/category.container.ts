@@ -2,7 +2,6 @@ import {infrastructureContainer} from "../../../infrastructure/di/infrastructure
 import {CategoryNetRepository} from "../data/repository/category.net.repository";
 import {CategoryOfflineFirstRepository} from "../data/repository/category.offline-first.repository";
 import {DeleteCategoryCaseUse} from "../domain/caseuse/DeleteCategoryCaseUse";
-import type {Category} from "../domain/entity/Category";
 import {GetAllCategoriesCaseUse} from "../domain/caseuse/GetAllCategoriesCaseUse";
 import {GetCategoryByIdCaseUse} from "../domain/caseuse/GetCategoryByIdCaseUse";
 import {ModifyCategoryCaseUse} from "../domain/caseuse/ModifyCategoryCaseUse";
