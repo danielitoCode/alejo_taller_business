@@ -1,9 +1,11 @@
 import type {ProductDTO} from "../dto/ProductDTO";
 import type {Product} from "../../domain/entity/Product";
 
-/**
- * DTO → Domain
- */
+export type ProductWriteDTO = Pick<
+    ProductDTO,
+    "$id" | "name" | "description" | "price" | "photoUrl" | "categoryId" | "rating"
+>;
+
 export function productFromDTO(dto: ProductDTO): Product {
     return {
         id: dto.$id,
@@ -12,14 +14,15 @@ export function productFromDTO(dto: ProductDTO): Product {
         price: dto.price,
         photoUrl: dto.photoUrl,
         categoryId: dto.categoryId,
-        rating: dto.rating ?? 0
-    }
+        rating: dto.rating ?? 0,
+    };
 }
 
 /**
- * Domain → DTO (para crear o actualizar)
+ * Domain → DTO (create/update payload)
+ * El id de dominio se serializa en $id de Appwrite.
  */
-export function productToDTO(product: Product): Omit<ProductDTO, "$createdAt" | "$updatedAt"> {
+export function productToDTO(product: Product): ProductWriteDTO {
     return {
         $id: product.id,
         name: product.name,
@@ -27,6 +30,6 @@ export function productToDTO(product: Product): Omit<ProductDTO, "$createdAt" | 
         price: product.price,
         photoUrl: product.photoUrl,
         categoryId: product.categoryId,
-        rating: product.rating
-    }
+        rating: product.rating,
+    };
 }
