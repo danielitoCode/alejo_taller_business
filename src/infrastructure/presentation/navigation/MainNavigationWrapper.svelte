@@ -1,0 +1,25 @@
+<script lang="ts">
+    import {rememberNavController} from "../../../lib/navigation/rememberNavController";
+    import {home, login, register, splash, welcome} from "./router";
+    import NavHost from "../../../lib/navigation/NavHost.svelte";
+    import {composable} from "../../../lib/navigation/composable";
+    import NestedNavigationWrapper from "./NestedNavigationWrapper.svelte";
+    import Splash from "../routes/Splash.svelte";
+    import Welcome from "../routes/Welcome.svelte";
+    import Login from "../../../feautures/auth/presentation/routes/Login.svelte";
+    import Register from "../../../feautures/auth/presentation/routes/Register.svelte";
+
+    const navController = rememberNavController(splash.path);
+</script>
+
+<NavHost
+        navController={navController}
+        routes={[
+                composable(splash, () => Splash),
+                composable(welcome, () => Welcome),
+                composable(login, () => Login),
+                composable(register, () => Register),
+                composable(home, () => NestedNavigationWrapper)
+            ]}
+/>
+

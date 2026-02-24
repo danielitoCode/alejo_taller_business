@@ -1,8 +1,23 @@
 <script lang="ts">
+    import Splash from "./infrastructure/presentation/routes/Splash.svelte";
+    import MainNavigationWrapper from "./infrastructure/presentation/navigation/MainNavigationWrapper.svelte";
+</script>
+<main>
+    <MainNavigationWrapper/>
+</main>
+
+
+<!--
+<script lang="ts">
   import svelteLogo from './assets/svelte.svg'
   import viteLogo from '/vite.svg'
   import Counter from './lib/Counter.svelte'
+  import {onMount} from "svelte";
+  onMount(() => {
+
+  })
 </script>
+
 
 <main>
   <div>
@@ -45,3 +60,4 @@
     color: #888;
   }
 </style>
+ -->

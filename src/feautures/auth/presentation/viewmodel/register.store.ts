@@ -2,13 +2,13 @@ import {derived, writable} from "svelte/store";
 import type {UserDTO} from "../../data/dto/UserDTO";
 import {authContainer} from "../../di/auth.container";
 
-interface AuthState {
+interface RegisterState {
     loading: boolean
     error: string | null
     lastAction: string | null
 }
 
-const initialState: AuthState = {
+const initialState:RegisterState = {
     loading: false,
     error: null,
     lastAction: null
@@ -18,8 +18,8 @@ function normalizeError(error: unknown): string {
     return error instanceof Error ? error.message : "Unexpected error"
 }
 
-function createAuthStore() {
-    const {subscribe, update} = writable<AuthState>(initialState)
+function createRegisterStore() {
+    const {subscribe, update} = writable<RegisterState>(initialState)
 
     async function runAction(actionName: string, task: () => Promise<void>): Promise<void> {
         update((state) => ({...state, loading: true, error: null}))
@@ -36,43 +36,43 @@ function createAuthStore() {
 
     async function createAccount(data: Partial<UserDTO>): Promise<void> {
         await runAction("createAccount", async () => {
-            await authContainer.repositories.accounts.createAccount(data)
+            await authContainer.useCases.accounts.createAccount(data)
         })
     }
 
     async function updateName(newName: string): Promise<void> {
         await runAction("updateName", async () => {
-            await authContainer.repositories.accounts.updateName(newName)
+            await authContainer.useCases.accounts.updateName(newName)
         })
     }
 
     async function updatePassword(newPassword: string): Promise<void> {
         await runAction("updatePassword", async () => {
-            await authContainer.repositories.accounts.updatePassword(newPassword)
+            await authContainer.useCases.accounts.updatePassword(newPassword)
         })
     }
 
     async function updatePhotoUrl(newPhotoUrl: string): Promise<void> {
         await runAction("updatePhotoUrl", async () => {
-            await authContainer.repositories.accounts.updatePhotoUrl(newPhotoUrl)
+            await authContainer.useCases.accounts.updatePhotoUrl(newPhotoUrl)
         })
     }
 
     async function updatePhone(newPhone: string): Promise<void> {
         await runAction("updatePhone", async () => {
-            await authContainer.repositories.accounts.updatePhone(newPhone)
+            await authContainer.useCases.accounts.updatePhone(newPhone)
         })
     }
 
     async function updateRole(newRole: string): Promise<void> {
         await runAction("updateRole", async () => {
-            await authContainer.repositories.accounts.updateRole(newRole)
+            await authContainer.useCases.accounts.updateRole(newRole)
         })
     }
 
     async function deleteUser(user: Partial<UserDTO>): Promise<void> {
         await runAction("deleteUser", async () => {
-            await authContainer.repositories.accounts.deleteUser(user)
+            await authContainer.useCases.accounts.deleteUser(user)
         })
     }
 
@@ -101,4 +101,4 @@ function createAuthStore() {
     }
 }
 
-export const authStore = createAuthStore()
+export const registerStore = createRegisterStore()
