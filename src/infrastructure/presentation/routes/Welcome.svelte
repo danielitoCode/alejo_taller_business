@@ -3,10 +3,18 @@
 
     export let navController;
 
-    onMount(() => {
+    /*onMount(() => {
         setTimeout(() => {
             navController.navigate("login");
         }, 2000)
-    })
+    })*/
 </script>
-<h1>SOY WELCOME</h1>
+<header>
+    HEADER
+</header>
+<body>
+    BODY
+</body>
+<footer>
+    FOOTER
+</footer>

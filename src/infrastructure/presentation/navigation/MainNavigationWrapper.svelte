@@ -9,7 +9,7 @@
     import Login from "../../../feautures/auth/presentation/routes/Login.svelte";
     import Register from "../../../feautures/auth/presentation/routes/Register.svelte";
 
-    const navController = rememberNavController(splash.path);
+    const navController = rememberNavController(welcome.path);
 </script>
 
 <NavHost
