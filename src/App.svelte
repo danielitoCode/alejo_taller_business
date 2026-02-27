@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Splash from "./infrastructure/presentation/routes/Splash.svelte";
+    import Splash from "./feautures/auth/presentation/routes/Splash.svelte";
     import MainNavigationWrapper from "./infrastructure/presentation/navigation/MainNavigationWrapper.svelte";
 </script>
 <main>
