@@ -21,7 +21,7 @@
             id: "2",
             title: "BMS",
             subtitle: "Battery Safety",
-            imageUrl: "https://images.unsplash.com/photo-1584270354949-c26b0d5b4a0c?auto=format&fit=crop&w=900&q=80"
+            imageUrl: "https://www.anernstore.com/cdn/shop/articles/Technician_troubleshooting_a_LiFePO4_battery_BMS_w.png?v=1761728830&width=1200"
         },
         {
             id: "3",
