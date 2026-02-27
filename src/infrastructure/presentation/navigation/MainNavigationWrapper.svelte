@@ -4,12 +4,12 @@
     import NavHost from "../../../lib/navigation/NavHost.svelte";
     import {composable} from "../../../lib/navigation/composable";
     import NestedNavigationWrapper from "./NestedNavigationWrapper.svelte";
-    import Splash from "../routes/Splash.svelte";
+    import Splash from "../../../feautures/auth/presentation/routes/Splash.svelte";
     import Welcome from "../routes/Welcome.svelte";
     import Login from "../../../feautures/auth/presentation/routes/Login.svelte";
     import Register from "../../../feautures/auth/presentation/routes/Register.svelte";
 
-    const navController = rememberNavController(welcome.path);
+    const navController = rememberNavController(splash.path);
 </script>
 
 <NavHost
