@@ -15,7 +15,7 @@
             id: "1",
             title: "EcoFlow",
             subtitle: "Power · Solar",
-            imageUrl: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=900&q=80"
+            imageUrl: "https://us.ecoflow.com/cdn/shop/files/ecoflow-ecoflow-delta-pro-ultra-whole-home-backup-power-ul-9540-certificated-dpu-bundle-delta-pro-ultra-1-x-inverter-1-x-battery-1179495744.png?v=1767511531&width=1240"
         },
         {
             id: "2",
@@ -27,7 +27,7 @@
             id: "3",
             title: "LI3-2A",
             subtitle: "Controller",
-            imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80"
+            imageUrl: "https://lian-li.com/wp-content/uploads/2024/10/TL_Controller_02a.jpg"
         },
         {
             id: "4",
