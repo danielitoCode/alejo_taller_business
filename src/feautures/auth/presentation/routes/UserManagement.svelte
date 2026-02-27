@@ -11,6 +11,12 @@
         await userManagementStore.createUser({ name: name.trim(), email: email.trim(), password, role });
         name = ""; email = ""; password = ""; role = "viewer";
     }
+
+    function handleRoleChange(userId: string, event: Event) {
+        const select = event.currentTarget as HTMLSelectElement | null;
+        if (!select) return;
+        userManagementStore.setRole(userId, select.value as BusinessRole);
+    }
 </script>
 
 <section class="card">
@@ -29,7 +35,7 @@
         <article>
             <strong>{user.name}</strong> · {user.email}
             <div class="actions">
-                <select value={user.role} on:change={(e) => userManagementStore.setRole(user.id, (e.currentTarget as HTMLSelectElement).value as BusinessRole)}>
+                <select value={user.role} on:change={(event) => handleRoleChange(user.id, event)}>
                     <option value="owner">owner</option><option value="admin">admin</option><option value="sales">sales</option><option value="viewer">viewer</option>
                 </select>
                 <button on:click={() => userManagementStore.toggleBlocked(user.id)}>{user.blocked ? "Desbloquear" : "Bloquear"}</button>

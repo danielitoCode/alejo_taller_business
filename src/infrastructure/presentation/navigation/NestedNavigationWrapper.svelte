@@ -6,15 +6,15 @@
     import NavHost from "../../../lib/navigation/NavHost.svelte";
     import { authContainer } from "../../../feautures/auth/di/auth.container";
 
-    import { users, product, category, sales, promo, settings, reservation } from "./internal.router";
+    import { users, product, category, sales, promo, settings, reservation } from "./nested.router";
 
-    import UsersManagement from "../routes/dashboard/UsersManagement.svelte";
-    import ProductManagement from "../routes/dashboard/ProductManagement.svelte";
-    import CategoryManagement from "../routes/dashboard/CategoryManagement.svelte";
-    import SalesManagement from "../routes/dashboard/SalesManagement.svelte";
-    import PromoManagement from "../routes/dashboard/PromoManagement.svelte";
-    import SettingsManagement from "../routes/dashboard/SettingsManagement.svelte";
-    import ReservationManagement from "../routes/dashboard/ReservationManagement.svelte";
+    import UserManagement from "../../../feautures/auth/presentation/routes/UserManagement.svelte";
+    import ProductManagement from "../../../feautures/product/presentation/routes/ProductManagement.svelte";
+    import CategoryManagement from "../../../feautures/category/presentation/routes/CategoryManagement.svelte";
+    import SaleManagement from "../../../feautures/sale/presentation/routes/SaleManagement.svelte";
+    import PromoManagement from "../../../feautures/notification/presentation/routes/PromoManagement.svelte";
+    import SettingsManagement from "../routes/SettingsManagement.svelte";
+    import ReservationManagement from "../routes/ReservationManagement.svelte";
 
     export let navController: NavController;
     export let navBackStackEntry: NavBackStackEntry<{ id?: string }>;
@@ -77,10 +77,10 @@
         <NavHost
                 navController={internalNavController}
                 routes={[
-                composable(users, () => UsersManagement),
+                composable(users, () => UserManagement),
                 composable(product, () => ProductManagement),
                 composable(category, () => CategoryManagement),
-                composable(sales, () => SalesManagement),
+                composable(sales, () => SaleManagement),
                 composable(promo, () => PromoManagement),
                 composable(settings, () => SettingsManagement),
                 composable(reservation, () => ReservationManagement)
