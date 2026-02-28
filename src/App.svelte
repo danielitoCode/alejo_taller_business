@@ -1,9 +1,11 @@
 <script lang="ts">
     import Splash from "./feautures/auth/presentation/routes/Splash.svelte";
     import MainNavigationWrapper from "./infrastructure/presentation/navigation/MainNavigationWrapper.svelte";
+    import ProductManagement from "./feautures/product/presentation/routes/ProductManagement.svelte";
 </script>
 <main>
-    <MainNavigationWrapper/>
+    <!-- <MainNavigationWrapper/> -->
+    <ProductManagement/>
 </main>
 
 

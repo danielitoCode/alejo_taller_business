@@ -105,7 +105,7 @@
         width: min(100%, 1060px);
         min-height: min(92dvh, 860px);
         display: grid;
-        align-content: space-between;
+        align-content: center;
         gap: 24px;
     }
 
