@@ -8,6 +8,7 @@ export interface ManagedBusinessUser {
     id: string;
     name: string;
     email: string;
+    photoUrl: string;
     role: BusinessRole;
     blocked: boolean;
     passwordResetRequested: boolean;
@@ -22,7 +23,7 @@ interface UserManagementState {
 
 const initialState: UserManagementState = {
     items: [
-        { id: "u1", name: "Alejo", email: "alejo@taller.com", role: "owner", blocked: false, passwordResetRequested: false }
+        { id: "u1", name: "Alejo", email: "alejo@taller.com", role: "owner", blocked: false, passwordResetRequested: false, photoUrl:"" }
     ],
     loading: false,
     saving: false,
@@ -64,7 +65,7 @@ function createUserManagementStore() {
             const id = `u-${Math.random().toString(36).slice(2, 9)}`;
             update((state) => ({
                 ...state,
-                items: [...state.items, { id, name: payload.name, email: payload.email, role: payload.role, blocked: false, passwordResetRequested: false }]
+                items: [...state.items, { id, name: payload.name, email: payload.email, role: payload.role, blocked: false, passwordResetRequested: false, photoUrl:"url" }]
             }));
         });
     }
