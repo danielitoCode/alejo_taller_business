@@ -14,8 +14,8 @@
 <section class="card">
     <h4>Gestión de promociones</h4>
     {#if $promotionStore.items.length===0}<p>No hay promociones creadas.</p>{/if}
-    <!--{#each $promotionStore.items as promo}-->
-    {#each listPromoTest as promo}
+    <!--{#each listPromoTest as promo}-->
+    {#each $promotionStore.items as promo}
         <article>
             <div>
                 <strong>{promo.title}</strong>
