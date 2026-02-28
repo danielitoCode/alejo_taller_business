@@ -107,6 +107,7 @@
             font-size: clamp(2rem, 3.6vw, 2.4rem);
             line-height: 1.12;
         }
+
         strong {
             margin: 0;
             font-size: clamp(2rem, 3.6vw, 2.4rem);
