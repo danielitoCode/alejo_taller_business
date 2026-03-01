@@ -9,6 +9,7 @@
         try {
             const user = await sessionStore.getCurrentUser();
             navController.navigate("home", { id: user.$id });
+            // navController.navigate("home", { id: "user.$id" });
         } catch {
             navController.navigate("welcome");
         }

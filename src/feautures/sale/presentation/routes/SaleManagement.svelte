@@ -39,8 +39,8 @@
     {#if $saleStore.items.length===0}
         <p>No hay ventas registradas.</p>
     {/if}
-    <!--{#each $saleStore.items as sale}-->
-    {#each salesListTest as sale}
+    <!--{#each salesListTest as sale}-->
+    {#each $saleStore.items as sale}
         <article class="form-card">
             <div>
                 <h3><strong>Venta #{sale.id.slice(0,8)}</strong></h3>

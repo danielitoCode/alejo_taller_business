@@ -2,10 +2,14 @@
     import Splash from "./feautures/auth/presentation/routes/Splash.svelte";
     import MainNavigationWrapper from "./infrastructure/presentation/navigation/MainNavigationWrapper.svelte";
     import ProductManagement from "./feautures/product/presentation/routes/ProductManagement.svelte";
+    import CategoryManagement from "./feautures/category/presentation/routes/CategoryManagement.svelte";
+    import UserManagement from "./feautures/auth/presentation/routes/UserManagement.svelte";
+    import PromoManagement from "./feautures/notification/presentation/routes/PromoManagement.svelte";
+    import SaleManagement from "./feautures/sale/presentation/routes/SaleManagement.svelte";
+    import NestedNavigationWrapper from "./infrastructure/presentation/navigation/NestedNavigationWrapper.svelte";
 </script>
 <main>
-    <!-- <MainNavigationWrapper/> -->
-    <ProductManagement/>
+    <MainNavigationWrapper/>
 </main>
 
 

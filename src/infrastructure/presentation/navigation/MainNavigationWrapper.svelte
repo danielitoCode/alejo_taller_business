@@ -8,8 +8,10 @@
     import Welcome from "../routes/Welcome.svelte";
     import Login from "../../../feautures/auth/presentation/routes/Login.svelte";
     import Register from "../../../feautures/auth/presentation/routes/Register.svelte";
+    import {onMount} from "svelte";
 
     const navController = rememberNavController(splash.path);
+
 </script>
 
 <NavHost
