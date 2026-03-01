@@ -7,12 +7,26 @@
     import PromoManagement from "./feautures/notification/presentation/routes/PromoManagement.svelte";
     import SaleManagement from "./feautures/sale/presentation/routes/SaleManagement.svelte";
     import NestedNavigationWrapper from "./infrastructure/presentation/navigation/NestedNavigationWrapper.svelte";
+    import ToastHost from "./infrastructure/presentation/components/ToastHost.svelte";
+    import DevTerminal from "./infrastructure/presentation/components/DevTerminal.svelte";
+    import {initGlobalLogger} from "./infrastructure/presentation/util/console.interceptor";
+
+    if (import.meta.env.DEV) {
+        initGlobalLogger();
+    }
+
 </script>
+
 <main>
     <MainNavigationWrapper/>
 </main>
 
+<ToastHost/>
 
+<!-- Terminal solo en desarrollo -->
+{#if import.meta.env.DEV}
+    <DevTerminal/>
+{/if}
 <!--
 <script lang="ts">
   import svelteLogo from './assets/svelte.svg'

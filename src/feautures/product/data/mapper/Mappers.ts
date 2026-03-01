@@ -3,7 +3,7 @@ import type {Product} from "../../domain/entity/Product";
 
 export type ProductWriteDTO = Pick<
     ProductDTO,
-    "$id" | "name" | "description" | "price" | "photoUrl" | "categoryId" | "rating"
+    "$id" | "name" | "description" | "price" | "photo_url" | "category_id" | "rating"
 >;
 
 /**
@@ -16,8 +16,8 @@ export function productFromDTO(dto: ProductDTO): Product {
         name: dto.name,
         description: dto.description,
         price: dto.price,
-        photoUrl: dto.photoUrl,
-        categoryId: dto.categoryId,
+        photoUrl: dto.photo_url,
+        categoryId: dto.category_id,
         rating: dto.rating ?? 0,
     };
 }
@@ -32,8 +32,8 @@ export function productToDTO(product: Product): ProductWriteDTO {
         name: product.name,
         description: product.description,
         price: product.price,
-        photoUrl: product.photoUrl,
-        categoryId: product.categoryId,
+        photo_url: product.photoUrl,
+        category_id: product.categoryId,
         rating: product.rating,
     };
 }

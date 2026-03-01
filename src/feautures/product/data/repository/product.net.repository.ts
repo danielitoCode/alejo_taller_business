@@ -4,13 +4,14 @@ import {type Databases, ID, Query} from "appwrite";
 import type {ProductWriteDTO} from "../mapper/Mappers";
 
 const DATABASE_ID = import.meta.env.VITE_APPWRITE_DATABASE_ID
-const COLLECTION_ID = "products"
+const COLLECTION_ID = "product"
 
 class ProductNetRepository {
     constructor(private readonly databases: Databases ) {
     }
 
     async getAll(): Promise<ProductDTO[]> {
+        console.log("Sincronizando datos desde el repositorio de productos");
         const response = await this.databases.listDocuments<ProductDTO>(
             DATABASE_ID,
             COLLECTION_ID

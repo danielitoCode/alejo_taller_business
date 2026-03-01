@@ -4,15 +4,12 @@
     import type { Product } from "../../domain/entity/Product";
     import { categoryStore } from "../../../category/presentation/viewmodel/category.store";
     import { promotionStore } from "../../../notification/presentation/viewmodel/promotion.store";
+    import {logger} from "../../../../infrastructure/presentation/util/logger.service";
 
     let draftName=""; let draftDescription=""; let draftPrice=0; let draftPhotoUrl=""; let draftCategoryId="";
     let editId: string | null = null;
 
-    let listTestProduct: Product[] = [
-        {id:"1",name:"test1",price:2.4,description:"producto de prueba 1",categoryId:"1",photoUrl:"url"},
-        {id:"2",name:"test2",price:2.4,description:"producto de prueba 2",categoryId:"2",photoUrl:"url"},
-        {id:"3",name:"test3",price:2.4,description:"producto de prueba 3",categoryId:"3",photoUrl:"url"},
-    ];
+
 
     onMount(() => {
         productStore.syncAll().catch(() => {});
@@ -40,7 +37,7 @@
             const discountPercent = Math.round(((old.price - Number(draftPrice)) / old.price) * 100);
             const now = Date.now();
             await promotionStore.create({
-                id: `promo-${Math.random().toString(36).slice(2,8)}`,
+                id: '',
                 title: `Promo por baja de precio: ${old.name}`,
                 message: `Descuento del ${discountPercent}%`,
                 imageUrl: old.photoUrl,
@@ -81,8 +78,8 @@
 
     <div class="list">
         {#each $productStore.items as product}
-            <!--{#each listTestProduct as product}-->
             <article>
+                <small> ${product.photoUrl}</small>>
                 <img src={product.photoUrl} alt={product.name}/>
                 <div>
                     <small>cat: {product.categoryId}</small>
@@ -170,7 +167,7 @@
 
         article{
             display:grid;
-            grid-template-columns:64px 1fr auto auto;
+            grid-template-columns:auto 64px 1fr auto auto;
             gap:8px;
             align-items:center;
             border:1px solid var(--md-sys-color-outline-variant);

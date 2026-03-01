@@ -4,6 +4,7 @@ import type {Product} from "../../domain/entity/Product";
 import {db} from "../../../../infrastructure/di/dexie.db";
 import {productFromDTO, productToDTO} from "../mapper/Mappers";
 import type Dexie from "dexie";
+import {logger} from "../../../../infrastructure/presentation/util/logger.service";
 
 export class ProductOfflineFirstRepository implements ProductRepository {
     constructor(
@@ -15,7 +16,8 @@ export class ProductOfflineFirstRepository implements ProductRepository {
             const remote = await this.net.getAll()
             await db.products.bulkPut(remote)
             return remote.map(productFromDTO)
-        } catch {
+        } catch(error: any) {
+            logger.error(error.message, error.stack);
             const local = await db.products.toArray()
             return local.map(productFromDTO)
         }
@@ -50,17 +52,25 @@ export class ProductOfflineFirstRepository implements ProductRepository {
             return productFromDTO(created)
         } catch {
             const localDTO = productToDTO(product)
+
+            const localId = localDTO.$id || crypto.randomUUID()
+            const now = new Date().toISOString()
+
             await db.products.put({
-                id: "",
                 ...localDTO,
-                $collectionId: "",
-                $databaseId: "",
-                $createdAt: new Date().toISOString(),
-                $updatedAt: new Date().toISOString(),
+                id: localId,
+                $id: localId,
+                $collectionId: "products",
+                $databaseId: import.meta.env.VITE_APPWRITE_DATABASE_ID || "",
+                $createdAt: now,
+                $updatedAt: now,
                 $permissions: [],
                 $sequence: 0
             })
-            return product
+            return {
+                ...product,
+                id: localId
+            }
         }
     }
 

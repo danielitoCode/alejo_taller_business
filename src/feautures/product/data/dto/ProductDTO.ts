@@ -5,7 +5,7 @@ export interface ProductDTO extends Models.Document {
     name: string
     description: string
     price: number
-    photoUrl: string
-    categoryId: string
+    photo_url: string
+    category_id: string
     rating?: number
 }

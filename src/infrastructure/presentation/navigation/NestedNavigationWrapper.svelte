@@ -5,9 +5,7 @@
     import { composable } from "../../../lib/navigation/composable";
     import NavHost from "../../../lib/navigation/NavHost.svelte";
     import { authContainer } from "../../../feautures/auth/di/auth.container";
-
     import { users, product, category, sales, promo, settings, reservation } from "./nested.router";
-
     import UserManagement from "../../../feautures/auth/presentation/routes/UserManagement.svelte";
     import ProductManagement from "../../../feautures/product/presentation/routes/ProductManagement.svelte";
     import CategoryManagement from "../../../feautures/category/presentation/routes/CategoryManagement.svelte";
@@ -15,6 +13,11 @@
     import PromoManagement from "../../../feautures/notification/presentation/routes/PromoManagement.svelte";
     import SettingsManagement from "../routes/SettingsManagement.svelte";
     import ReservationManagement from "../routes/ReservationManagement.svelte";
+    import {productStore} from "../../../feautures/product/presentation/viewmodel/product.store";
+    import {categoryStore} from "../../../feautures/category/presentation/viewmodel/category.store";
+    import {promotionStore} from "../../../feautures/notification/presentation/viewmodel/promotion.store";
+    import {onMount} from "svelte";
+    import {toastStore} from "../viewmodel/toast.store";
 
     export let navController: NavController;
     export let navBackStackEntry: NavBackStackEntry<{ id?: string }>;
@@ -50,6 +53,12 @@
             navController.navigate("welcome");
         }
     }
+
+    onMount(() => {
+        productStore.syncAll().catch(() => { toastStore.error("Error al sincronizar datos"); });
+        categoryStore.syncAll().catch(() => { toastStore.error("Error al sincronizar datos"); });
+        promotionStore.syncAll().catch(() => { toastStore.error("Error al sincronizar datos"); });
+    });
 </script>
 
 <section class="nested-shell">
