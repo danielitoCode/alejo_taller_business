@@ -3,6 +3,8 @@ import type {UserDTO} from "../../data/dto/UserDTO";
 import {ID} from "appwrite";
 
 export interface UserNetRepository {
+    getCurrentUser(): Promise<Partial<UserDTO>>
+
     createAccount(user: Partial<UserDTO>): Promise<void>
 
     updateName(newName: string): Promise<void>

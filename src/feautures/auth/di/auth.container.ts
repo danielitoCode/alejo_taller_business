@@ -10,6 +10,7 @@ import {UpdatePhoneCaseUse} from "../domain/caseuse/UpdatePhoneCaseUse";
 import {SessionNetManagerImpl} from "../data/repository/session.net.manager";
 import {OpenSessionCaseUse} from "../domain/caseuse/OpenSessionCaseUse";
 import {CloseSessionsCaseUSe} from "../domain/caseuse/CloseSessionsCaseUSe";
+import {GetCurrentUserCaseUse} from "../domain/caseuse/GetCurrentUserCaseUse";
 
 // Account instance
 const accounts = infrastructureContainer.appwrite.account
@@ -28,6 +29,7 @@ const updateRoleCaseUse = new UpdateRoleCaseUse(authNetRepository)
 const deleteUserCaseUse = new DeleteUserCaseUse(authNetRepository)
 const opeSessionCaseUse = new OpenSessionCaseUse(sessionNetManager)
 const closeSessionCaseUSe = new CloseSessionsCaseUSe(sessionNetManager)
+const getCurrentUserCaseUse = new GetCurrentUserCaseUse(authNetRepository)
 
 export const authContainer = {
     repositories: {
@@ -36,13 +38,14 @@ export const authContainer = {
     },
     useCases: {
         accounts: {
-            createAccount: createAccountCaseUse.execute,
-            updateName: updateNameCaseUse.execute,
-            updatePassword: updatePasswordCaseUse.execute,
-            updatePhotoUrl: updatePhotoUrlCaseUse.execute,
-            updatePhone: updatePhoneCaseUse.execute,
-            updateRole: updateRoleCaseUse.execute,
-            deleteUser: deleteUserCaseUse.execute
+            createAccount: createAccountCaseUse.execute.bind(createAccountCaseUse),
+            getCurrentUser: getCurrentUserCaseUse.execute.bind(getCurrentUserCaseUse),
+            updateName: updateNameCaseUse.execute.bind(updateNameCaseUse),
+            updatePassword: updatePasswordCaseUse.execute.bind(updatePasswordCaseUse),
+            updatePhotoUrl: updatePhotoUrlCaseUse.execute.bind(updatePhotoUrlCaseUse),
+            updatePhone: updatePhoneCaseUse.execute.bind(updatePhoneCaseUse),
+            updateRole: updateRoleCaseUse.execute.bind(updateRoleCaseUse),
+            deleteUser: deleteUserCaseUse.execute.bind(deleteUserCaseUse)
         },
         sessions: {
             openSession: opeSessionCaseUse,

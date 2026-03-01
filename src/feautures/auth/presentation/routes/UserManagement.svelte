@@ -1,5 +1,6 @@
 <script lang="ts">
     import { userManagementStore, type BusinessRole } from "../viewmodel/user-management.store";
+    import {onMount} from "svelte";
 
     let name = "";
     let email = "";
@@ -17,6 +18,8 @@
         if (!select) return;
         userManagementStore.setRole(userId, select.value as BusinessRole);
     }
+
+    onMount(() => { userManagementStore.syncAll().catch(() => {}); });
 </script>
 
 <section class="card">
